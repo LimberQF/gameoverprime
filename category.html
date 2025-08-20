@@ -31,16 +31,14 @@
 
   <main class="cat-wrap">
     <nav class="cat-list" id="catList">
-      <a class="cat-btn" href="supervivencia.html">Terror</a>
-      <a class="cat-btn" href="supervivencia.html">Acción</a>
-      <a class="cat-btn" href="supervivencia.html">Mundo Abierto</a>
-      <a class="cat-btn" href="supervivencia.html">Free to Play</a>
-      <a class="cat-btn" href="supervivencia.html">Supervivencia</a>
-      <a class="cat-btn" href="supervivencia.html">Carreras</a>
+      <a class="cat-btn" href="category/terror.html">Terror</a>
+      <a class="cat-btn" href="category/supervivencia.html">Acción</a>
+      <a class="cat-btn" href="category/supervivencia.html">Mundo Abierto</a>
+      <a class="cat-btn" href="category/supervivencia.html">Free to Play</a>
+      <a class="cat-btn" href="category/supervivencia.html">Supervivencia</a>
+      <a class="cat-btn" href="category/supervivencia.html">Carreras</a>
     </nav>
   </main>
-
-  
 
   <script>
    
@@ -53,7 +51,6 @@
         localStorage.setItem('theme',document.documentElement.classList.contains('dark')?'dark':'light');
       });
 
-      
       const q=document.getElementById('search');
       const items=[...document.querySelectorAll('#catList .cat-btn')];
       function apply(){

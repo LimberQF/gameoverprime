@@ -1,0 +1,77 @@
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GameOverPrime – Tienda</title>
+  <link rel="stylesheet" href="../reset.css" />
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+  <div class="top">
+    <a class="nav-back" href="../category.html">&larr; categorías</a>
+    <div class="spacer"></div>
+    <a class="login" href="#">Iniciar sesión</a>
+    <label class="toggle" title="Tema claro/oscuro">
+      <input id="themeToggle" class="sr-only" type="checkbox" />
+      <div class="switch"><span class="knob"></span></div>
+    </label>
+  </div>
+
+  <h1>SUPERVIVENCIA</h1>
+
+  <div class="search-wrap">
+    <div class="search">
+      <input id="search" placeholder="Buscar" aria-label="Buscar juegos" />
+      <button aria-label="Buscar" id="searchBtn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21 21l-4.3-4.3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/></svg>
+      </button>
+    </div>
+  </div>
+
+    <section class="grid" id="grid">
+    <article class="card" data-title="minecraft" data-price="35000">
+      <div class="thumb"> <img src="../image/minecraft.jpg" width="250px" height="150px" alt="minecraft"> </div>
+      <br /> <br>
+      <div class="title">Minecraft</div>
+      <div class="price">CLP$ 35.000</div>
+    </article>
+
+    <article class="card" data-title="the forest" data-price="45000">
+      <div class="thumb"> <img src="../image/theforest.jpg" width="250px" height="150px" alt="theforest"> </div>
+      <br /> <br>
+      <div class="title">The Forest</div>
+      <div class="price">CLP$ 45.000</div>
+    </article>
+
+    <article class="card" data-title="terraria" data-price="4400">
+      <div class="thumb"> <img src="../image/terraria.jpg" width="250px" height="150px" alt="terraria"> </div>
+      <br /> <br>
+      <div class="title">Terraria</div>
+      <div class="price">CLP$ 4.400</div>
+    </article>
+
+    <article class="card" data-title="ark" data-price="0">
+      <div class="thumb"> <img src="../image/arksurvival.jpg" width="250px" height="150px" alt="ark"> </div>
+      <br /> <br>
+      <div class="title">ARK</div>
+      <div class="price">Free to Play</div>
+    </article>
+
+    <article class="card" data-title="subnautica" data-price="5500">
+      <div class="thumb"> <img src="../image/subnautica.jpg" width="250px" height="150px" alt="subnautica"> </div>
+      <br /> <br>
+      <div class="title">Subnautica</div>
+      <div class="price">CLP$ 5.500</div>
+    </article>
+
+    <article class="card" data-title="stranded deep" data-price="14487">
+      <div class="thumb"> <img src="../image/strandeddeep.jpg" width="250px" height="150px" alt="strandeddeep"> </div>
+      <br /> <br>
+      <div class="title">Stranded Deep</div>
+      <div class="price">CLP$ 14.487</div>
+    </article>
+  </section>
+
+  <script src="../main.js"></script>
+</body>
+</html>
