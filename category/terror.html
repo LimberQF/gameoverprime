@@ -2,22 +2,30 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>GameOverPrime – Tienda</title>
+  <title>GameOverPrime – Terror</title>
+  <script >// quita el parpadeo pagina Tema claro/oscuro
+    !function(){try{
+      var t = localStorage.getItem("theme");
+      if(t === "dark") document.documentElement.classList.add("dark");
+    }catch(e){}}();
+  </script>
   <link rel="stylesheet" href="../reset.css" />
   <link rel="stylesheet" href="../style.css" />
+  <script src="../main.js" defer></script>
 </head>
+
 <body>
   <div class="top">
     <a class="nav-back" href="../category.html">&larr; categorías</a>
     <div class="spacer"></div>
-    <a class="login" href="#">Iniciar sesión</a>
+    <a class="login" href="../register_login/login.html">Iniciar sesión</a>
     <label class="toggle" title="Tema claro/oscuro">
       <input id="themeToggle" class="sr-only" type="checkbox" />
       <div class="switch"><span class="knob"></span></div>
     </label>
   </div>
 
-  <h1>SUPERVIVENCIA</h1>
+  <h1>TERROR</h1>
 
   <div class="search-wrap">
     <div class="search">
@@ -71,7 +79,5 @@
       <div class="price">CLP$ 14.487</div>
     </article>
   </section>
-
-  <script src="../main.js"></script>
 </body>
 </html>

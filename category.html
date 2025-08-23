@@ -3,63 +3,46 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Categorías – Tienda</title>
-
-  <link rel="stylesheet" href="reset.css" />
-  <link rel="stylesheet" href="style.css" />
-
+  <script >// quita el parpadeo pagina Tema claro/oscuro
+    !function(){try{
+      var t = localStorage.getItem("theme");
+      if(t === "dark") document.documentElement.classList.add("dark");
+    }catch(e){}}();
+  </script>
+  <link rel="stylesheet" href="../reset.css" />
+  <link rel="stylesheet" href="../style.css" />
+  <script src="../main.js" defer></script>
 </head>
 <body>
   <div class="top">
     <div style="flex:1"></div>
-    <a class="login" href="#">Iniciar sesión</a>
+    <a class="home-btn" href="home_page.html" aria-label="Ir al inicio">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M3 10.5 12 3l9 7.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <path d="M5 9.5V21h14V9.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <path d="M9 21v-6h6v6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+    </a>
+    <a class="login" href="register_login/login.html">Iniciar sesión</a>
     <label class="toggle" title="Tema claro/oscuro">
       <input id="themeToggle" class="sr-only" type="checkbox" />
       <div class="switch"><span class="knob"></span></div>
     </label>
+
   </div>
 
   <h1>CATEGORIAS</h1>
 
-  <div class="search-wrap">
-    <div class="search">
-      <input id="search" placeholder="Buscar" aria-label="Buscar categorías" />
-      <button aria-label="Buscar" id="searchBtn">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21 21l-4.3-4.3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/></svg>
-      </button>
-    </div>
-  </div>
-
   <main class="cat-wrap">
     <nav class="cat-list" id="catList">
       <a class="cat-btn" href="category/terror.html">Terror</a>
-      <a class="cat-btn" href="category/supervivencia.html">Acción</a>
-      <a class="cat-btn" href="category/supervivencia.html">Mundo Abierto</a>
-      <a class="cat-btn" href="category/supervivencia.html">Free to Play</a>
+      <a class="cat-btn" href="category/accion.html">Acción</a>
+      <a class="cat-btn" href="category/mundoavierto.html">Mundo Abierto</a>
+      <a class="cat-btn" href="category/freetoplay.html">Free to Play</a>
       <a class="cat-btn" href="category/supervivencia.html">Supervivencia</a>
-      <a class="cat-btn" href="category/supervivencia.html">Carreras</a>
+      <a class="cat-btn" href="category/carreras.html">Carreras</a>
     </nav>
   </main>
-
-  <script>
-   
-    (function(){
-      const toggle=document.getElementById('themeToggle');
-      const saved=localStorage.getItem('theme');
-      if(saved==='dark'){document.documentElement.classList.add('dark');toggle.checked=true}
-      toggle.addEventListener('change',()=>{
-        document.documentElement.classList.toggle('dark');
-        localStorage.setItem('theme',document.documentElement.classList.contains('dark')?'dark':'light');
-      });
-
-      const q=document.getElementById('search');
-      const items=[...document.querySelectorAll('#catList .cat-btn')];
-      function apply(){
-        const s=(q.value||'').toLowerCase();
-        items.forEach(a=>{a.style.display=a.textContent.toLowerCase().includes(s)?'':'none'});
-      }
-      q.addEventListener('input',apply);
-      document.getElementById('searchBtn').addEventListener('click',apply);
-    })();
-  </script>
+  
 </body>
 </html>
