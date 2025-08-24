@@ -72,8 +72,3 @@ document.getElementById('searchBtn').addEventListener('click',()=>{const first=c
     row.appendChild(clone);
   });
 })();
-
-
-
-
-
