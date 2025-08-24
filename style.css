@@ -333,7 +333,7 @@ h1{
 
 
 
-/* ===== Auth (login / registro) – usa tu paleta ===== */
+/* login / registro */
 .auth-wrap{ max-width:720px; margin:40px auto; padding:0 16px; }
 .auth-title{ text-align:center; color:var(--accent); margin:0 0 16px; font-size:1.8rem; }
 
@@ -347,7 +347,6 @@ h1{
 
 .auth-form{ display:grid; gap:12px; }
 
-/* Inputs estilo sitio (coherentes con .search) */
 .form-input{
   width:100%;
   background:var(--panel);
@@ -362,11 +361,9 @@ h1{
 .form-input-group{ display:flex; gap:8px; }
 .form-input-group .form-input{ flex:1; }
 
-/* Fila secundaria */
 .form-row{ display:flex; justify-content:space-between; align-items:center; gap:12px; }
 .chk{ display:inline-flex; align-items:center; gap:8px; color:var(--text); }
 
-/* Botones (coherentes con tu paleta) */
 .btn{
   display:inline-flex; align-items:center; justify-content:center;
   padding:.6rem 1rem; border-radius:10px;
