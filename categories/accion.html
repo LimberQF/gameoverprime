@@ -19,11 +19,22 @@
     <a class="nav-back" href="../category.html">&larr; categorías</a>
     <div class="spacer"></div>
     <a class="home-btn" href="../home_page.html" aria-label="Ir al inicio">
+    
     <svg viewBox="0 0 24 24" aria-hidden="true">
       <path d="M3 10.5 12 3l9 7.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
       <path d="M5 9.5V21h14V9.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
       <path d="M9 21v-6h6v6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
     </svg>
+    </a>
+    
+    <a href="../carrito/index.html" class="home-btn" id="iconoCarrito" title="Carrito">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+        d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.35 2.7a1 1 0 00.9 1.5h12.1m-13.65-4.2L5.4 5M16 21a1 1 0 100-2 1 1 0 000 2zm-8 0a1 1 0 100-2 1 1 0 000 2z" />
+    </svg>
+    <span id="contadorCarrito">0</span>
+    </a>
+
     <a class="login" href="../register_login/login.html">Iniciar sesión</a>
     <label class="toggle" title="Tema claro/oscuro">
       <input id="themeToggle" class="sr-only" type="checkbox" />
@@ -48,6 +59,10 @@
       <br /> <br>
       <div class="title">Devil May Cry 5</div>
       <div class="price">CLP$ 21.000</div>
+      <button class="btn btn-primary btn-agregar"
+            data-id="devilmaycry5"
+            data-nombre="Devil May Cry 5"
+            data-precio="21000">Agregar</button>
     </article>
 
     <article class="card" data-title="control" data-price="19000">
@@ -55,6 +70,10 @@
       <br /> <br>
       <div class="title">Control</div>
       <div class="price">CLP$ 19.000</div>
+      <button class="btn btn-primary btn-agregar"
+            data-id="control"
+            data-nombre="Control"
+            data-precio="19000">Agregar</button>
     </article>
 
     <article class="card" data-title="metalgearrisingrevengeance" data-price="19000">
@@ -62,6 +81,10 @@
       <br /> <br>
       <div class="title">Metal Gear: Rising Revengeance</div>
       <div class="price">CLP$ 18.000</div>
+      <button class="btn btn-primary btn-agregar"
+            data-id="metalgearrisingrevengeance"
+            data-nombre="Metal Gear: Rising Revengeance"
+            data-precio="18000">Agregar</button>
     </article>
 
     <article class="card" data-title="arksurvival" data-price="0">
@@ -69,6 +92,10 @@
       <br /> <br>
       <div class="title">ARK Survival</div>
       <div class="price">Free to Play</div>
+      <button class="btn btn-primary btn-agregar"
+            data-id="arksurvival"
+            data-nombre="ARK Survival"
+            data-precio="0">Agregar</button>
     </article>
 
     <article class="card" data-title="godofwar" data-price="35000">
@@ -76,6 +103,10 @@
       <br /> <br>
       <div class="title">God of War</div>
       <div class="price">CLP$ 35.000</div>
+      <button class="btn btn-primary btn-agregar"
+            data-id="godofwar"
+            data-nombre="God of War"
+            data-precio="35000">Agregar</button>
     </article>
 
     <article class="card" data-title="doometernal" data-price="14487">
@@ -83,6 +114,10 @@
       <br /> <br>
       <div class="title">DOOM Eternal</div>
       <div class="price">CLP$ 14.487</div>
+      <button class="btn btn-primary btn-agregar"
+            data-id="doometernal"
+            data-nombre="DOOM Eternal"
+            data-precio="14487">Agregar</button>
     </article>
   </section>
 </body>

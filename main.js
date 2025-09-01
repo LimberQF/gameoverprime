@@ -72,3 +72,41 @@ document.getElementById('searchBtn').addEventListener('click',()=>{const first=c
     row.appendChild(clone);
   });
 })();
+
+// Script para agregar juegos carrito
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.btn-agregar').forEach(boton => {
+    boton.addEventListener('click', () => {
+      const id = boton.dataset.id;
+      const nombre = boton.dataset.nombre;
+      const precio = parseInt(boton.dataset.precio || '0', 10);
+
+      const carrito = JSON.parse(localStorage.getItem('carrito') || '[]');
+      const existente = carrito.find(x => x.id === id);
+
+      if (existente) existente.cantidad += 1;
+      else carrito.push({ id, nombre, precio, cantidad: 1 });
+
+      localStorage.setItem('carrito', JSON.stringify(carrito));
+
+      boton.textContent = 'Agregado ✔';
+      setTimeout(() => boton.textContent = 'Agregar', 900);
+    });
+  });
+});
+
+// lógica del contador carrito
+document.addEventListener('DOMContentLoaded', () => {
+  const contador = document.getElementById('contadorCarrito');
+  const actualizarContador = () => {
+    const carrito = JSON.parse(localStorage.getItem('carrito') || '[]');
+    const total = carrito.reduce((acc, item) => acc + item.cantidad, 0);
+    contador.textContent = total;
+    contador.style.display = total > 0 ? 'block' : 'none';
+  };
+  actualizarContador();
+  window.addEventListener('storage', actualizarContador);
+  setInterval(actualizarContador, 1000);
+});
+
+

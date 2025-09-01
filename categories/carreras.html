@@ -24,6 +24,16 @@
       <path d="M5 9.5V21h14V9.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
       <path d="M9 21v-6h6v6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
     </svg>
+    </a>
+    
+    <a href="../carrito/index.html" class="home-btn" id="iconoCarrito" title="Carrito">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+        d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.35 2.7a1 1 0 00.9 1.5h12.1m-13.65-4.2L5.4 5M16 21a1 1 0 100-2 1 1 0 000 2zm-8 0a1 1 0 100-2 1 1 0 000 2z" />
+    </svg>
+    <span id="contadorCarrito">0</span>
+    </a>
+
     <a class="login" href="../register_login/login.html">Iniciar sesión</a>
     <label class="toggle" title="Tema claro/oscuro">
       <input id="themeToggle" class="sr-only" type="checkbox" />
@@ -48,6 +58,10 @@
       <br /> <br>
       <div class="title">Forza Horizon 5</div>
       <div class="price">CLP$ 21.500</div>
+      <button class="btn btn-primary btn-agregar"
+            data-id="forzahorizon5"
+            data-nombre="Forza Horizon 5"
+            data-precio="21500">Agregar</button>
     </article>
 
     <article class="card" data-title="granturismo7" data-price="22000">
@@ -55,6 +69,10 @@
       <br /> <br>
       <div class="title">Gran Turismo 7</div>
       <div class="price">CLP$ 22.000</div>
+      <button class="btn btn-primary btn-agregar"
+            data-id="granturismo7"
+            data-nombre="Gran Turismo 7"
+            data-precio="22000">Agregar</button>
     </article>
 
     <article class="card" data-title="needforspeedheat" data-price="22400">
@@ -62,13 +80,21 @@
       <br /> <br>
       <div class="title">Need for Speed: Heat</div>
       <div class="price">CLP$ 22.400</div>
+      <button class="btn btn-primary btn-agregar"
+            data-id="needforspeedheat"
+            data-nombre="Need for Speed: Heat"
+            data-precio="22400">Agregar</button>
     </article>
 
-    <article class="card" data-title="f125" data-price="0">
+    <article class="card" data-title="f125" data-price="43500">
       <div class="thumb"> <img src="../image/F125.jpg" width="250px" height="150px" alt="f125"> </div>
       <br /> <br>
       <div class="title">F1 25</div>
       <div class="price">43.500</div>
+      <button class="btn btn-primary btn-agregar"
+            data-id="f125"
+            data-nombre="F1 25"
+            data-precio="43500">Agregar</button>
     </article>
 
     <article class="card" data-title="thecrew2" data-price="5500">
@@ -76,6 +102,10 @@
       <br /> <br>
       <div class="title">The Crew 2</div>
       <div class="price">CLP$ 5.500</div>
+      <button class="btn btn-primary btn-agregar"
+            data-id="thecrew2"
+            data-nombre="The Crew 2"
+            data-precio="5500">Agregar</button>
     </article>
 
     <article class="card" data-title="dirtrally2.0" data-price="14487">
@@ -83,6 +113,10 @@
       <br /> <br>
       <div class="title">Dirt Rally 2.0</div>
       <div class="price">CLP$ 14.487</div>
+      <button class="btn btn-primary btn-agregar"
+            data-id="dirtrally2.0"
+            data-nombre="Dirt Rally 2.0"
+            data-precio="14487">Agregar</button>
     </article>
   </section>
 </body>

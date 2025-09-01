@@ -25,6 +25,15 @@
       <path d="M9 21v-6h6v6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
     </svg>
     </a>
+
+    <a href="../carrito/index.html" class="home-btn" id="iconoCarrito" title="Carrito">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+        d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.35 2.7a1 1 0 00.9 1.5h12.1m-13.65-4.2L5.4 5M16 21a1 1 0 100-2 1 1 0 000 2zm-8 0a1 1 0 100-2 1 1 0 000 2z" />
+    </svg>
+    <span id="contadorCarrito">0</span>
+    </a>
+
     <a class="login" href="../register_login/login.html">Iniciar sesión</a>
     <label class="toggle" title="Tema claro/oscuro">
       <input id="themeToggle" class="sr-only" type="checkbox" />
@@ -49,6 +58,10 @@
       <br /> <br>
       <div class="title">Minecraft</div>
       <div class="price">CLP$ 35.000</div>
+      <button class="btn btn-primary btn-agregar"
+            data-id="minecraft"
+            data-nombre="Minecraft"
+            data-precio="35000">Agregar</button>
     </article>
 
     <article class="card" data-title="theforest" data-price="45000">
@@ -56,6 +69,10 @@
       <br /> <br>
       <div class="title">The Forest</div>
       <div class="price">CLP$ 45.000</div>
+      <button class="btn btn-primary btn-agregar"
+            data-id="theforest"
+            data-nombre="The Forest"
+            data-precio="45000">Agregar</button>
     </article>
 
     <article class="card" data-title="terraria" data-price="4400">
@@ -63,6 +80,10 @@
       <br /> <br>
       <div class="title">Terraria</div>
       <div class="price">CLP$ 4.400</div>
+      <button class="btn btn-primary btn-agregar"
+            data-id="terraria"
+            data-nombre="Terraria"
+            data-precio="4400">Agregar</button>
     </article>
 
     <article class="card" data-title="arksurvival" data-price="0">
@@ -70,6 +91,10 @@
       <br /> <br>
       <div class="title">ARK Survival</div>
       <div class="price">Free to Play</div>
+      <button class="btn btn-primary btn-agregar"
+            data-id="arksurvival"
+            data-nombre="ARK Survival"
+            data-precio="0">Agregar</button>
     </article>
 
     <article class="card" data-title="subnautica" data-price="5500">
@@ -77,13 +102,21 @@
       <br /> <br>
       <div class="title">Subnautica</div>
       <div class="price">CLP$ 5.500</div>
+      <button class="btn btn-primary btn-agregar"
+            data-id="subnautica"
+            data-nombre="Subnautica"
+            data-precio="5500">Agregar</button>
     </article>
 
-    <article class="card" data-title="stranded deep" data-price="14487">
+    <article class="card" data-title="strandeddeep" data-price="14487">
       <div class="thumb"> <img src="../image/strandeddeep.jpg" width="250px" height="150px" alt="strandeddeep"> </div>
       <br /> <br>
       <div class="title">Stranded Deep</div>
       <div class="price">CLP$ 14.487</div>
+      <button class="btn btn-primary btn-agregar"
+            data-id="strandeddeep"
+            data-nombre="Stranded Deep"
+            data-precio="14487">Agregar</button>
     </article>
   </section>
 </body>

@@ -378,5 +378,138 @@ h1{
 
 .muted{ color:var(--muted); }
 .small{ font-size:.9rem; margin-top:6px; }
-  
-    
+
+
+/* icono carrito */
+#iconoCarrito {
+  position: relative;
+}
+
+#iconoCarrito svg {
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+
+#contadorCarrito {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  background: #ff3333;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  border-radius: 50%;
+  padding: 2px 6px;
+  min-width: 18px;
+  text-align: center;
+  display: none; 
+}
+
+
+/* Lista del carrito */
+.lista-carrito{
+  list-style:none;
+  padding:0;
+  margin:0;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
+/* Cada producto: 3 zonas = nombre | controles | subtotal */
+.lista-carrito li{
+  display:grid;
+  grid-template-columns: 1fr auto auto;
+  align-items:center;
+  gap:12px;
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:.8rem 1rem;
+}
+
+/* Nombre + precio unitario debajo (opcional) */
+.item-info{
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+}
+.item-nombre{ font-weight:700; }
+.item-precio{ color:var(--muted); font-weight:600; font-size:.95rem; }
+
+/* Controles de cantidad */
+.item-controles{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  background:var(--panel);
+}
+.btn-cant{
+  padding:.45rem .7rem;
+  border:1px solid var(--border);
+  background:var(--panel);
+  color:var(--text);
+  border-radius:8px;
+  cursor:pointer;
+}
+.btn-cant:hover{ border-color:var(--accent); }
+.item-cant{
+  min-width:36px;
+  text-align:center;
+  font-weight:700;
+}
+
+/* Subtotal a la derecha como “pill” */
+.item-subtotal{
+  background:color-mix(in oklab, var(--accent) 12%, var(--panel));
+  border:1px solid var(--border);
+  color:var(--text);
+  padding:.45rem .7rem;
+  border-radius:10px;
+  font-weight:700;
+  white-space:nowrap;
+}
+
+/* Botón eliminar alineado abajo en móvil */
+.item-acciones{
+  grid-column: 1 / -1;
+  display:flex;
+  justify-content:flex-end;
+}
+.item-eliminar{
+  margin-top:6px;
+  padding:.5rem .8rem;
+  border:1px solid var(--border);
+  background:var(--panel);
+  color:var(--text);
+  border-radius:10px;
+  cursor:pointer;
+}
+.item-eliminar:hover{ border-color:var(--accent); }
+
+/* Totales */
+#bloqueTotales{
+  margin-top:12px;
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:.8rem 1rem;
+}
+.totales-fila{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:.35rem 0;
+}
+.totales-total strong{ font-size:1.05rem; }
+
+/* Responsive: apilar controles y subtotal debajo del nombre */
+@media (max-width: 640px){
+  .lista-carrito li{
+    grid-template-columns: 1fr;
+  }
+  .item-controles{ justify-content:flex-start; }
+  .item-subtotal{ justify-self:flex-start; }
+}
+
