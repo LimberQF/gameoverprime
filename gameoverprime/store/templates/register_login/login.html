@@ -1,0 +1,70 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Iniciar sesión – GameOverPrime</title>
+
+  <script>
+  !function(){try{
+    var t = localStorage.getItem("theme");
+    if(t === "dark") document.documentElement.classList.add("dark");
+  }catch(e){}}();
+  </script>
+
+  <link rel="stylesheet" href="{% static 'store/css/reset.css' %}" />
+  <link rel="stylesheet" href="{% static 'store/css/style.css' %}" />
+  <script src="{% static 'store/js/main.js' %}" defer></script>
+  <script src="{% static 'store/js/register_login/login.js' %}" defer></script>
+</head>
+<body>
+  <div class="top">
+    <div class="spacer"></div>
+    <a class="home-btn" href="{% url 'store:home' %}" aria-label="Ir al inicio">
+      <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+        <path d="M3 10.5 12 3l9 7.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <path d="M5 9.5V21h14V9.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <path d="M9 21v-6h6v6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </a>
+    <label class="toggle" title="Tema claro/oscuro">
+      <input id="themeToggle" class="sr-only" type="checkbox" />
+      <div class="switch"><span class="knob"></span></div>
+    </label>
+  </div>
+
+  <div class="auth-wrap">
+    <h2 class="auth-title">Iniciar sesión</h2>
+    <div class="auth-card">
+      
+      <form id="formLogin" class="auth-form" novalidate>
+        <label class="form-label" for="usuarioEmail">Usuario o correo</label>
+        <input class="form-input" id="usuarioEmail" type="text" placeholder="tuusuario o correo@dominio.com" required />
+
+        <label class="form-label" for="password">Contraseña</label>
+        <div class="form-input-group">
+          <input class="form-input" id="password" type="password" required />
+          <button class="btn btn-secondary" type="button" id="verPw" aria-label="Mostrar/ocultar contraseña">👁</button>
+        </div>
+
+        <div class="form-row">
+          <label class="chk">
+            <input type="checkbox" id="recuerdame" checked />
+            <span>Recuérdame</span>
+          </label>
+          <a class="muted" href="{% url 'store:register' %}">Crear cuenta</a>
+        </div>
+
+        <div class="form-actions">
+          <button class="btn btn-primary" type="submit">Entrar</button>
+          <a class="btn btn-secondary" href="{% url 'store:home' %}">Cancelar</a>
+        </div>
+      </form>
+      <p class="muted small">* Demo local: se usa localStorage del navegador.</p>
+    </div>
+  </div>
+</body>
+</html>
+
+

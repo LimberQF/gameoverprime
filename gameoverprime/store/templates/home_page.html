@@ -1,0 +1,108 @@
+{% load static %}
+<html lang="es">
+
+<head>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GameOverPrime – Tienda</title>
+  <script>
+    !function(){try{
+      var t = localStorage.getItem("theme");
+      if(t === "dark") document.documentElement.classList.add("dark");
+    }catch(e){}}();
+  </script>
+  <link rel="stylesheet" href="{% static 'store/css/reset.css' %}">
+  <link rel="stylesheet" href="{% static 'store/css/style.css' %}">
+  {% block head_extra %}{% endblock %}
+  <script src="{% static 'store/js/main.js' %}" defer></script>
+</head>
+
+<body>
+  <div class="top">
+   
+    <a class="nav-back" href="{% url 'store:category' %}">&larr; categorías</a>
+    <div class="spacer"></div>
+
+    <a href="{% url 'store:caja' %}" class="home-btn" id="iconoCarrito" title="Carrito">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.35 2.7a1 1 0 00.9 1.5h12.1m-13.65-4.2L5.4 5M16 21a1 1 0 100-2 1 1 0 000 2z" />
+      </svg>
+      <span id="contadorCarrito">0</span>
+    </a>
+
+   
+    <a class="login" href="{% url 'store:login' %}">Iniciar sesión</a>
+    <a class="login btn btn-outline-light btn-sm" href="{% url 'store:register' %}">Crear cuenta</a>
+
+    <label class="toggle" title="Tema claro/oscuro">
+      <input id="themeToggle" class="sr-only" type="checkbox" />
+      <div class="switch"><span class="knob"></span></div>
+    </label>
+  </div>
+
+  <section class="offers-block" aria-label="Juegos en oferta">
+    <div class="offers-head">
+      <h2>Juegos en oferta</h2>
+    </div>
+    <div class="offers-row" id="offersRow"></div>
+  </section>
+
+  <h1>Juegos</h1>
+  <div class="search-wrap">
+    <div class="search">
+      <input id="search" placeholder="Buscar" aria-label="Buscar juegos" />
+      <button aria-label="Buscar" id="searchBtn">
+        <svg class="icon-18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M21 21l-4.3-4.3" stroke="currentColor" stroke-linecap="round"/>
+        <circle cx="11" cy="11" r="7" stroke="currentColor"/>
+      </button>
+    </div>
+  </div>
+
+  <section class="grid" id="grid">
+    <article class="card" data-title="minecraft" data-price="35000">
+      <div class="thumb"><img src="{% static 'store/image/minecraft.jpg' %}" width="250" height="150" alt="minecraft"></div>
+      <br><br>
+      <div class="title">Minecraft</div>
+      <div class="price">CLP$ 35.000</div>
+    </article>
+
+    <article class="card" data-title="the forest" data-price="45000">
+      <div class="thumb"><img src="{% static 'store/image/theforest.jpg' %}" width="250" height="150" alt="theforest"></div>
+      <br><br>
+      <div class="title">The Forest</div>
+      <div class="price">CLP$ 45.000</div>
+    </article>
+
+    <article class="card" data-title="terraria" data-price="4400">
+      <div class="thumb"><img src="{% static 'store/image/terraria.jpg' %}" width="250" height="150" alt="terraria"></div>
+      <br><br>
+      <div class="title">Terraria</div>
+      <div class="price">CLP$ 4.400</div>
+    </article>
+
+    <article class="card" data-title="arksurvival" data-price="0">
+      <div class="thumb"><img src="{% static 'store/image/arksurvival.jpg' %}" width="250" height="150" alt="ark"></div>
+      <br><br>
+      <div class="title">ARK</div>
+      <div class="price">Free to Play</div>
+    </article>
+
+    <article class="card" data-title="subnautica" data-price="5500">
+      <div class="thumb"><img src="{% static 'store/image/subnautica.jpg' %}" width="250" height="150" alt="subnautica"></div>
+      <br><br>
+      <div class="title">Subnautica</div>
+      <div class="price">CLP$ 5.500</div>
+    </article>
+
+    <article class="card" data-title="strandeddeep" data-price="14487">
+      <div class="thumb"><img src="{% static 'store/image/strandeddeep.jpg' %}" width="250" height="150" alt="strandeddeep"></div>
+      <br><br>
+      <div class="title">Stranded Deep</div>
+      <div class="price">CLP$ 14.487</div>
+    </article>
+  </section>
+</body>
+</html>

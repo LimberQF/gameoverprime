@@ -1,0 +1,117 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Terror – GameOverPrime</title>
+
+  <script>
+    !function(){try{
+      var t = localStorage.getItem("theme");
+      if(t === "dark") document.documentElement.classList.add("dark");
+    }catch(e){}}();
+  </script>
+
+  <link rel="stylesheet" href="{% static 'store/css/reset.css' %}">
+  <link rel="stylesheet" href="{% static 'store/css/style.css' %}">
+  <script src="{% static 'store/js/main.js' %}" defer></script>
+</head>
+
+<body>
+  <div class="top">
+    <a class="nav-back" href="{% url 'store:category' %}">&larr; categorías</a>
+    <div class="spacer"></div>
+
+    <a class="home-btn" href="{% url 'store:home' %}" aria-label="Ir al inicio">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M3 10.5 12 3l9 7.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <path d="M5 9.5V21h14V9.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <path d="M9 21v-6h6v6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </a>
+
+    <a href="{% url 'store:carrito' %}" class="home-btn" id="iconoCarrito" title="Carrito">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.35 2.7a1 1 0 00.9 1.5h12.1m-13.65-4.2L5.4 5M16 21a1 1 0 100-2 1 1 0 000 2z" />
+      </svg>
+      <span id="contadorCarrito">0</span>
+    </a>
+
+    <a class="login" href="{% url 'store:login' %}">Iniciar sesión</a>
+
+    <label class="toggle" title="Tema claro/oscuro">
+      <input id="themeToggle" class="sr-only" type="checkbox" />
+      <div class="switch"><span class="knob"></span></div>
+    </label>
+  </div>
+
+  <h1>TERROR</h1>
+
+  <div class="search-wrap">
+    <div class="search">
+      <input id="search" placeholder="Buscar" aria-label="Buscar juegos" />
+      <button aria-label="Buscar" id="searchBtn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21 21l-4.3-4.3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <section class="grid" id="grid">
+    <article class="card" data-title="deadspace" data-price="35000">
+      <div class="thumb"><img src="{% static 'store/image/deadspace.png' %}" width="250" height="150" alt="deadspace"></div>
+      <br><br>
+      <div class="title">Dead Space</div>
+      <div class="price">CLP$ 35.000</div>
+      <button class="btn btn-primary btn-agregar"
+              data-id="deadspace" data-nombre="Dead Space" data-precio="35000">Agregar</button>
+    </article>
+
+    <article class="card" data-title="theforest" data-price="45000">
+      <div class="thumb"><img src="{% static 'store/image/theforest.jpg' %}" width="250" height="150" alt="theforest"></div>
+      <br><br>
+      <div class="title">The Forest</div>
+      <div class="price">CLP$ 45.000</div>
+      <button class="btn btn-primary btn-agregar"
+              data-id="theforest" data-nombre="The Forest" data-precio="45000">Agregar</button>
+    </article>
+
+    <article class="card" data-title="outlast" data-price="4400">
+      <div class="thumb"><img src="{% static 'store/image/outlast.jpg' %}" width="250" height="150" alt="outlast"></div>
+      <br><br>
+      <div class="title">Outlast</div>
+      <div class="price">CLP$ 4.400</div>
+      <button class="btn btn-primary btn-agregar"
+              data-id="outlast" data-nombre="Outlast" data-precio="4400">Agregar</button>
+    </article>
+
+    <article class="card" data-title="silenthill2" data-price="25500">
+      <div class="thumb"><img src="{% static 'store/image/silenthill2.png' %}" width="250" height="150" alt="silenthill2"></div>
+      <br><br>
+      <div class="title">Silent Hill 2</div>
+      <div class="price">CLP$ 25.500</div>
+      <button class="btn btn-primary btn-agregar"
+              data-id="silenthill2" data-nombre="Silent Hill 2" data-precio="25500">Agregar</button>
+    </article>
+
+    <article class="card" data-title="residentevil7biohazard" data-price="26500">
+      <div class="thumb"><img src="{% static 'store/image/residentevil7biohazard.jpg' %}" width="250" height="150" alt="residentevil7biohazard"></div>
+      <br><br>
+      <div class="title">Resident Evil 7: Biohazard</div>
+      <div class="price">CLP$ 26.500</div>
+      <button class="btn btn-primary btn-agregar"
+              data-id="residentevil7biohazard" data-nombre="Resident Evil 7: Biohazard" data-precio="26500">Agregar</button>
+    </article>
+
+    <article class="card" data-title="amnesiathedarkdescent" data-price="14487">
+      <div class="thumb"><img src="{% static 'store/image/amnesiathedarkdescent.png' %}" width="250" height="150" alt="amnesiathedarkdescent"></div>
+      <br><br>
+      <div class="title">Amnesia: The Dark Descent</div>
+      <div class="price">CLP$ 14.487</div>
+      <button class="btn btn-primary btn-agregar"
+              data-id="amnesiathedarkdescent" data-nombre="Amnesia: The Dark Descent" data-precio="14487">Agregar</button>
+    </article>
+  </section>
+</body>
+</html>

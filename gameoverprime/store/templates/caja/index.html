@@ -1,0 +1,79 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Caja / Pago - GameOverPrime</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <script>
+    !function(){try{
+      var t = localStorage.getItem("theme");
+      if(t === "dark") document.documentElement.classList.add("dark");
+    }catch(e){}}();
+  </script>
+
+  <link rel="stylesheet" href="{% static 'store/css/reset.css' %}">
+  <link rel="stylesheet" href="{% static 'store/css/style.css' %}">
+</head>
+<body>
+  <div class="top">
+    <a class="nav-back" href="{% url 'store:carrito' %}">← Volver al carrito</a>
+    <div class="spacer"></div>
+
+    <a class="home-btn" href="{% url 'store:home' %}" aria-label="Ir al inicio">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M3 10.5 12 3l9 7.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <path d="M5 9.5V21h14V9.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <path d="M9 21v-6h6v6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </a>
+
+    <a class="login" href="{% url 'store:login' %}">Iniciar sesión</a>
+  </div>
+
+  <h1>Caja</h1>
+
+  <div class="cat-wrap">
+    <div class="auth-card" style="margin-bottom:16px;">
+      <h2 class="auth-title" style="margin-bottom:10px;">Resumen de compra</h2>
+      <div id="listaItems" class="cat-list"></div>
+
+      <div class="auth-card" style="margin-top:12px;">
+        <div class="form-row" style="justify-content:space-between;">
+          <span>Neto</span><strong id="netoTxt">—</strong>
+        </div>
+        <div class="form-row" style="justify-content:space-between;">
+          <span>IVA (19%)</span><strong id="ivaTxt">—</strong>
+        </div>
+        <div class="form-row" style="justify-content:space-between;">
+          <span>Total</span><strong id="totalTxt">—</strong>
+        </div>
+      </div>
+    </div>
+
+    <div class="auth-card">
+      <h2 class="auth-title" style="margin-bottom:10px;">Datos de pago</h2>
+      <form id="formPago" class="auth-form">
+        <input id="nombre" class="form-input" placeholder="Nombre y Apellido" required />
+        <input id="correo" class="form-input" placeholder="Correo electrónico" type="email" required />
+        <input id="rut" class="form-input" placeholder="RUT / ID" required />
+        <select id="metodo" class="form-input" required>
+          <option value="">Método de pago</option>
+          <option value="tarjeta">Tarjeta</option>
+          <option value="transferencia">Transferencia</option>
+          <option value="debito">Débito</option>
+        </select>
+        <textarea id="notas" class="form-input" rows="3" placeholder="Notas (opcional)"></textarea>
+        <div class="form-actions">
+          <a class="btn" href="{% url 'store:carrito' %}">← Volver</a>
+          <button class="btn btn-primary" type="submit">Pagar ahora</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="{% static 'store/js/caja/caja.js' %}" defer></script>
+</body>
+</html>
+
