@@ -30,17 +30,21 @@
       </svg>
     </a>
 
-   
-    <a href="{% url 'store:caja' %}" class="home-btn" id="iconoCarrito" title="Carrito">
+    <a href="{% url 'store:carrito' %}" class="home-btn" id="iconoCarrito" title="Carrito">
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
               d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.35 2.7a1 1 0 00.9 1.5h12.1m-13.65-4.2L5.4 5M16 21a1 1 0 100-2 1 1 0 000 2z" />
       </svg>
       <span id="contadorCarrito">0</span>
     </a>
-
    
-    <a class="login" href="{% url 'store:login' %}">Iniciar sesión</a>
+    {% if request.user.is_authenticated %}
+      <a class="login" href="{% url 'store:profile' %}">Mi Perfil</a>
+      <a class="login btn btn-outline-light btn-sm" href="{% url 'store:logout' %}">Salir</a>
+    {% else %}
+      <a class="login" href="{% url 'store:login' %}">Iniciar sesión</a>
+      <a class="login btn btn-outline-light btn-sm" href="{% url 'store:register' %}">Crear cuenta</a>
+    {% endif %}
 
     <label class="toggle" title="Tema claro/oscuro">
       <input id="themeToggle" class="sr-only" type="checkbox" />

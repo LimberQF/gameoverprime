@@ -23,7 +23,7 @@
     <a class="nav-back" href="{% url 'store:category' %}">&larr; categorías</a>
     <div class="spacer"></div>
 
-    <a class="home-btn" href="{% url 'store:home_page' %}" aria-label="Ir al inicio">
+    <a class="home-btn" href="{% url 'store:home' %}" aria-label="Ir al inicio">
       <svg viewBox="0 0 24 24" aria-hidden="true">
         <path d="M3 10.5 12 3l9 7.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
         <path d="M5 9.5V21h14V9.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
@@ -39,7 +39,13 @@
       <span id="contadorCarrito">0</span>
     </a>
 
-    <a class="login" href="{% url 'store:login' %}">Iniciar sesión</a>
+    {% if request.user.is_authenticated %}
+      <a class="login" href="{% url 'store:profile' %}">Mi Perfil</a>
+      <a class="login btn btn-outline-light btn-sm" href="{% url 'store:logout' %}">Salir</a>
+    {% else %}
+      <a class="login" href="{% url 'store:login' %}">Iniciar sesión</a>
+      <a class="login btn btn-outline-light btn-sm" href="{% url 'store:register' %}">Crear cuenta</a>
+    {% endif %}
 
     <label class="toggle" title="Tema claro/oscuro">
       <input id="themeToggle" class="sr-only" type="checkbox" />

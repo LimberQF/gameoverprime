@@ -1,66 +1,53 @@
 (() => {
   const form = document.getElementById("formRegistro");
   if (!form) return;
-  form.addEventListener("submit", function (e) {
-    e.preventDefault();
-    const nombre = (document.getElementById("nombreCompleto").value || "").trim();
-    const usuario = (document.getElementById("usuario").value || "").trim();
-    const email = (document.getElementById("email").value || "").trim();
-    const password = document.getElementById("password").value;
-    const confirmPassword = document.getElementById("confirmPassword").value;
-    const fechaNacimiento = document.getElementById("fechaNacimiento").value;
-    const direccion = (document.getElementById("direccion")?.value || "").trim();
-    if (!nombre || !usuario || !email || !password || !confirmPassword || !fechaNacimiento) {
+
+  const q = id => document.getElementById(id);
+
+  form.addEventListener("submit", (e) => {
+    const nombre = (q("nombreCompleto").value || "").trim();
+    const usuario = (q("usuario").value || "").trim();
+    const email = (q("email").value || "").trim();
+    const pw1 = q("password").value;
+    const pw2 = q("confirmPassword").value;
+    const fnac = q("fechaNacimiento").value;
+
+    if (!nombre || !usuario || !email || !pw1 || !pw2 || !fnac) {
+      e.preventDefault();
       alert("Todos los campos son obligatorios, excepto la dirección.");
       return;
     }
+
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
+      e.preventDefault();
       alert("El correo electrónico no tiene un formato válido.");
       return;
     }
-    if (password !== confirmPassword) {
+
+    if (pw1 !== pw2) {
+      e.preventDefault();
       alert("Las contraseñas no coinciden.");
       return;
     }
-    const passwordRegex = /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{6,18}$/;
-    if (!passwordRegex.test(password)) {
-      alert("La contraseña debe tener entre 6 y 18 caracteres, al menos una mayúscula y un número.");
+
+    const softPw = /^(?=.*[A-Z])(?=.*\d).{8,}$/;
+    if (!softPw.test(pw1)) {
+      e.preventDefault();
+      alert("La contraseña debe tener mínimo 8 caracteres, incluir 1 mayúscula y 1 número.");
       return;
     }
+
     const hoy = new Date();
-    const nacimiento = new Date(fechaNacimiento);
+    const nacimiento = new Date(fnac);
     let edad = hoy.getFullYear() - nacimiento.getFullYear();
     const mes = hoy.getMonth() - nacimiento.getMonth();
-    if (mes < 0 || (mes === 0 && hoy.getDate() < nacimiento.getDate())) {
-      edad--;
-    }
+    if (mes < 0 || (mes === 0 && hoy.getDate() < nacimiento.getDate())) edad--;
     if (edad < 13) {
+      e.preventDefault();
       alert("Debes tener al menos 13 años para registrarte.");
       return;
     }
-    const key = "users";
-    const users = JSON.parse(localStorage.getItem(key) || "[]");
-    const exists = users.some(u =>
-      (u.usuario?.toLowerCase() === usuario.toLowerCase()) ||
-      (u.email?.toLowerCase() === email.toLowerCase())
-    );
-    if (exists) {
-      alert("El nombre de usuario o correo ya está registrado.");
-      return;
-    }
-    const nuevo = {
-      nombreCompleto: nombre,
-      usuario,
-      email,
-      fechaNacimiento,
-      direccion,
-      password,              
-      createdAt: new Date().toISOString()
-    };
-    users.push(nuevo);
-    localStorage.setItem(key, JSON.stringify(users));
-    alert("¡Registro exitoso! Ahora puedes iniciar sesión.");
-    window.location.href = "./login.html";
+
   });
 })();
