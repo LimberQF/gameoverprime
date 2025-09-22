@@ -19,7 +19,7 @@ from .forms import ProfileForm
 
 # CBVs Catálogo
 class HomePage(TemplateView):
-    template_name = "home_page.html"
+    template_name = "index.html"
 
 class CategoryListPage(TemplateView):
     template_name = "category.html"
