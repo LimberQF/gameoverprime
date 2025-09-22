@@ -22,10 +22,10 @@ urlpatterns = [
     path("perfil/editar/", profile_update_view, name="profile_edit"),
 
     # Compatibilidad con archivos .html antiguos 
-    path("home_page.html", RedirectView.as_view(pattern_name="store:home", permanent=False)),
+    path("index.html", RedirectView.as_view(pattern_name="store:home", permanent=False)),
     path("register_login/login.html", RedirectView.as_view(pattern_name="store:login", permanent=False)),
     path("register_login/registro.html", RedirectView.as_view(pattern_name="store:register", permanent=False)),
-    path("carrito/index.html", RedirectView.as_view(pattern_name="store:carrito", permanent=False)),
-    path("caja/index.html", RedirectView.as_view(pattern_name="store:caja", permanent=False)),
+    path("carrito/carrito.html", RedirectView.as_view(pattern_name="store:carrito", permanent=False)),
+    path("caja/caja.html", RedirectView.as_view(pattern_name="store:caja", permanent=False)),
 ]
 
