@@ -1,111 +1,88 @@
 {% load static %}
+<!DOCTYPE html>
 <html lang="es">
-
 <head>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>GameOverPrime – Tienda</title>
-  <script>
-    !function(){try{
-      var t = localStorage.getItem("theme");
-      if(t === "dark") document.documentElement.classList.add("dark");
-    }catch(e){}}();
-  </script>
+  <title>GameOverPrime – Tienda de Videojuegos</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="{% static 'store/css/reset.css' %}">
   <link rel="stylesheet" href="{% static 'store/css/style.css' %}">
-  {% block head_extra %}{% endblock %}
   <script src="{% static 'store/js/main.js' %}" defer></script>
+  <script>
+    try {
+      if (localStorage.getItem("theme") === "dark") {
+        document.documentElement.classList.add("dark");
+      }
+    } catch (e) {}
+  </script>
 </head>
 
 <body>
-  <div class="top">
-   
-    <a class="nav-back" href="{% url 'store:category' %}">&larr; categorías</a>
-    <div class="spacer"></div>
+  <header class="bg-dark text-white py-3">
+    <div class="container d-flex justify-content-between align-items-center">
+      <a href="{% url 'store:category' %}" class="btn btn-outline-light btn-sm">&larr; Categorías</a>
 
-    <a href="{% url 'store:caja' %}" class="home-btn" id="iconoCarrito" title="Carrito">
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.35 2.7a1 1 0 00.9 1.5h12.1m-13.65-4.2L5.4 5M16 21a1 1 0 100-2 1 1 0 000 2z" />
-      </svg>
-      <span id="contadorCarrito">0</span>
-    </a>
+      <div class="d-flex align-items-center gap-3">
+        <a href="{% url 'store:caja' %}" class="position-relative" title="Carrito">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.35 2.7a1 1 0 00.9 1.5h12.1m-13.65-4.2L5.4 5M16 21a1 1 0 100-2 1 1 0 000 2z" />
+          </svg>
+          <span id="contadorCarrito" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">0</span>
+        </a>
 
-    {% if request.user.is_authenticated %}
-      <a class="login" href="{% url 'store:profile' %}">Mi Perfil</a>
-      <a class="login btn btn-outline-light btn-sm" href="{% url 'store:logout' %}">Salir</a>
-    {% else %}
-      <a class="login" href="{% url 'store:login' %}">Iniciar sesión</a>
-      <a class="login btn btn-outline-light btn-sm" href="{% url 'store:register' %}">Crear cuenta</a>
-    {% endif %}
+        {% if request.user.is_authenticated %}
+          <a href="{% url 'store:profile' %}" class="text-white">Mi Perfil</a>
+          <a href="{% url 'store:logout' %}" class="btn btn-outline-light btn-sm">Salir</a>
+        {% else %}
+          <a href="{% url 'store:login' %}" class="text-white">Iniciar sesión</a>
+          <a href="{% url 'store:register' %}" class="btn btn-outline-light btn-sm">Crear cuenta</a>
+        {% endif %}
 
-    <label class="toggle" title="Tema claro/oscuro">
-      <input id="themeToggle" class="sr-only" type="checkbox" />
-      <div class="switch"><span class="knob"></span></div>
-    </label>
-  </div>
-
-  <section class="offers-block" aria-label="Juegos en oferta">
-    <div class="offers-head">
-      <h2>Juegos en oferta</h2>
+        <label class="toggle" title="Tema claro/oscuro">
+          <input id="themeToggle" class="sr-only" type="checkbox" />
+          <div class="switch"><span class="knob"></span></div>
+        </label>
+      </div>
     </div>
-    <div class="offers-row" id="offersRow"></div>
-  </section>
+  </header>
 
-  <h1>Juegos</h1>
-  <div class="search-wrap">
-    <div class="search">
-      <input id="search" placeholder="Buscar" aria-label="Buscar juegos" />
-      <button aria-label="Buscar" id="searchBtn">
-        <svg class="icon-18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <path d="M21 21l-4.3-4.3" stroke="currentColor" stroke-linecap="round"/>
-        <circle cx="11" cy="11" r="7" stroke="currentColor"/>
-      </button>
-    </div>
-  </div>
+  <main class="container my-5">
+    <section class="text-center mb-5">
+      <h2 class="display-5">Juegos en oferta</h2>
+      <div id="offersRow" class="row"></div>
+    </section>
 
-  <section class="grid" id="grid">
-    <article class="card" data-title="minecraft" data-price="35000">
-      <div class="thumb"><img src="{% static 'store/image/minecraft.jpg' %}" width="250" height="150" alt="minecraft"></div>
-      <br><br>
-      <div class="title">Minecraft</div>
-      <div class="price">CLP$ 35.000</div>
-    </article>
+    <section class="mb-4">
+      <form class="d-flex justify-content-center" role="search">
+        <input id="search" class="form-control w-50 me-2" placeholder="Buscar juegos" aria-label="Buscar" />
+        <button id="searchBtn" class="btn btn-primary" type="submit">
+          <svg class="icon-18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M21 21l-4.3-4.3" stroke="currentColor" stroke-linecap="round" />
+            <circle cx="11" cy="11" r="7" stroke="currentColor" />
+          </svg>
+        </button>
+      </form>
+    </section>
 
-    <article class="card" data-title="the forest" data-price="45000">
-      <div class="thumb"><img src="{% static 'store/image/theforest.jpg' %}" width="250" height="150" alt="theforest"></div>
-      <br><br>
-      <div class="title">The Forest</div>
-      <div class="price">CLP$ 45.000</div>
-    </article>
+    <section class="row" id="grid">
+      {% for juego in juegos %}
+      <article class="col-md-4 mb-4">
+        <div class="card h-100">
+          <img src="{% static juego.imagen %}" class="card-img-top" alt="{{ juego.nombre }}">
+          <div class="card-body">
+            <h5 class="card-title">{{ juego.nombre }}</h5>
+            <p class="card-text">{{ juego.precio }}</p>
+          </div>
+        </div>
+      </article>
+      {% endfor %}
+    </section>
+  </main>
 
-    <article class="card" data-title="terraria" data-price="4400">
-      <div class="thumb"><img src="{% static 'store/image/terraria.jpg' %}" width="250" height="150" alt="terraria"></div>
-      <br><br>
-      <div class="title">Terraria</div>
-      <div class="price">CLP$ 4.400</div>
-    </article>
-
-    <article class="card" data-title="arksurvival" data-price="0">
-      <div class="thumb"><img src="{% static 'store/image/arksurvival.jpg' %}" width="250" height="150" alt="ark"></div>
-      <br><br>
-      <div class="title">ARK</div>
-      <div class="price">Free to Play</div>
-    </article>
-
-    <article class="card" data-title="subnautica" data-price="5500">
-      <div class="thumb"><img src="{% static 'store/image/subnautica.jpg' %}" width="250" height="150" alt="subnautica"></div>
-      <br><br>
-      <div class="title">Subnautica</div>
-      <div class="price">CLP$ 5.500</div>
-    </article>
-
-    <article class="card" data-title="strandeddeep" data-price="14487">
-      <div class="thumb"><img src="{% static 'store/image/strandeddeep.jpg' %}" width="250" height="150" alt="strandeddeep"></div>
-      <br><br>
-      <div class="title">Stranded Deep</div>
-      <div class="price">CLP$ 14.487</div>
-    </article>
-  </section>
+  <footer class="bg-dark text-white text-center py-3">
+    <small>&copy; 2025 GameOverPrime. Todos los derechos reservados.</small>
+  </footer>
 </body>
 </html>
