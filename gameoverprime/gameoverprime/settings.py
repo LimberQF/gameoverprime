@@ -27,9 +27,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-LOGIN_URL = 'store:login'
-LOGIN_REDIRECT_URL = 'store:home'
-LOGOUT_REDIRECT_URL = 'store:login'
 
 # Application definition
 
@@ -78,10 +75,15 @@ WSGI_APPLICATION = 'gameoverprime.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.oracle',
+        'NAME': 'xe',  
+        'USER': 'django_grupo7',
+        'PASSWORD': 'Grupo72025progra',
+        'HOST': 'localhost',
+        'PORT': '1521',
     }
 }
+
 
 
 # Password validation
@@ -128,6 +130,6 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-SESSION_COOKIE_SECURE = False
-CSRF_COOKIE_SECURE = False
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+# Email backend para desarrollo
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+DEFAULT_FROM_EMAIL = 'noreply@gameoverprime.cl'
