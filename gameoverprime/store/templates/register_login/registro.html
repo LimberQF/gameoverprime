@@ -12,72 +12,78 @@
   <script src="{% static 'store/js/register_login/validacion.js' %}" defer></script>
 </head>
 <body>
-  <div class="top">
-    <div style="flex:1"></div>
-    <a class="home-btn" href="{% url 'store:home' %}" aria-label="Ir al inicio">
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M3 10.5 12 3l9 7.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-        <path d="M5 9.5V21h14V9.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-        <path d="M9 21v-6h6v6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-      </svg>
-    </a>
-    <a class="login" href="{% url 'store:login' %}">Iniciar sesión</a>
-  </div>
-
-  <div class="container mt-5 mb-5">
-    <h2 class="text-center mb-4">Registro de Compradores</h2>
-
-    {% if messages %}
-      <ul class="messages mb-3">
-        {% for m in messages %}<li class="{{ m.tags }}">{{ m }}</li>{% endfor %}
-      </ul>
-    {% endif %}
-
-    <div class="auth-card">
-      <form id="formRegistro" class="row g-3" method="post" novalidate>
-        {% csrf_token %}
-        <div class="col-md-6">
-          <label for="nombreCompleto" class="form-label">Nombre completo</label>
-          <input type="text" class="form-control" id="nombreCompleto" name="nombreCompleto" required>
-        </div>
-
-        <div class="col-md-6">
-          <label for="usuario" class="form-label">Nombre de usuario</label>
-          <input type="text" class="form-control" id="usuario" name="usuario" required>
-        </div>
-
-        <div class="col-md-6">
-          <label for="email" class="form-label">Correo electrónico</label>
-          <input type="email" class="form-control" id="email" name="email" required>
-        </div>
-
-        <div class="col-md-6">
-          <label for="fechaNacimiento" class="form-label">Fecha de nacimiento</label>
-          <input type="date" class="form-control" id="fechaNacimiento" name="fechaNacimiento" required>
-        </div>
-
-        <div class="col-md-6">
-          <label for="password" class="form-label">Contraseña</label>
-          <input type="password" class="form-control" id="password" name="password" required>
-          <div class="form-text">Mínimo 8 caracteres (más reglas de seguridad).</div>
-        </div>
-
-        <div class="col-md-6">
-          <label for="confirmPassword" class="form-label">Repetir contraseña</label>
-          <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" required>
-        </div>
-
-        <div class="col-12">
-          <label for="direccion" class="form-label">Dirección de despacho (opcional)</label>
-          <input type="text" class="form-control" id="direccion" name="direccion" placeholder="Calle 123, Ciudad">
-        </div>
-
-        <div class="col-12 d-flex justify-content-between mt-4">
-          <button type="submit" class="btn btn-primary" href="{% url 'store:profile' %}">Enviar</button>
-          <button type="reset" class="btn btn-secondary">Limpiar</button>
-        </div>
-      </form>
+  <header class="bg-dark text-white py-2">
+    <div class="container d-flex justify-content-between align-items-center">
+      <a class="btn btn-outline-light btn-sm" href="{% url 'store:home' %}" aria-label="Ir al inicio">&larr; Inicio</a>
+      <a class="text-white" href="{% url 'store:login' %}">Iniciar sesión</a>
     </div>
-  </div>
+  </header>
+
+  <main class="container my-5">
+    <section class="row justify-content-center">
+      <div class="col-md-8">
+        <h2 class="text-center mb-4">Registro de Compradores</h2>
+
+        {% if messages %}
+          <div class="alert alert-warning">
+            <ul class="mb-0">
+              {% for m in messages %}
+                <li class="{{ m.tags }}">{{ m }}</li>
+              {% endfor %}
+            </ul>
+          </div>
+        {% endif %}
+
+        <form id="formRegistro" method="post" class="row g-3" novalidate>
+          {% csrf_token %}
+
+          <div class="col-md-6">
+            <label for="nombreCompleto" class="form-label">Nombre completo</label>
+            <input type="text" class="form-control" id="nombreCompleto" name="nombreCompleto" required>
+          </div>
+
+          <div class="col-md-6">
+            <label for="usuario" class="form-label">Nombre de usuario</label>
+            <input type="text" class="form-control" id="usuario" name="usuario" required>
+          </div>
+
+          <div class="col-md-6">
+            <label for="email" class="form-label">Correo electrónico</label>
+            <input type="email" class="form-control" id="email" name="email" required>
+          </div>
+
+          <div class="col-md-6">
+            <label for="fechaNacimiento" class="form-label">Fecha de nacimiento</label>
+            <input type="date" class="form-control" id="fechaNacimiento" name="fechaNacimiento" required>
+          </div>
+
+          <div class="col-md-6">
+            <label for="password" class="form-label">Contraseña</label>
+            <input type="password" class="form-control" id="password" name="password" required minlength="8">
+            <div class="form-text">Mínimo 8 caracteres, incluye número y símbolo.</div>
+          </div>
+
+          <div class="col-md-6">
+            <label for="confirmPassword" class="form-label">Repetir contraseña</label>
+            <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" required>
+          </div>
+
+          <div class="col-12">
+            <label for="direccion" class="form-label">Dirección de despacho (opcional)</label>
+            <input type="text" class="form-control" id="direccion" name="direccion" placeholder="Calle 123, Ciudad">
+          </div>
+
+          <div class="col-12 d-flex justify-content-between mt-4">
+            <button type="submit" class="btn btn-primary">Enviar</button>
+            <button type="reset" class="btn btn-secondary">Limpiar</button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-dark text-white text-center py-3">
+    <small>&copy; 2025 GameOverPrime</small>
+  </footer>
 </body>
 </html>
