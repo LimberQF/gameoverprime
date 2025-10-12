@@ -68,4 +68,3 @@ GameOverPrime es una tienda de videojuegos desarrollada con Django y Oracle, que
 | Oracle CRUD                      | Tablas `productos` y `categorias`, validación desde frontend y Postman | ✅         |
 | Documentación                    | `README.md`, commits comentados y organizados | ✅         |
 | Frontend dinámico                | Bootstrap, visualización con `fetch()` en `index.html` | ✅         |
-| Video presentación               | En elaboración con participación grupal | ⏳         |
