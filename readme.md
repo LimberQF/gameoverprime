@@ -1,43 +1,71 @@
 # GameOverPrime 🎮 – Proyecto Web Grupo 7
 
-Aplicación web desarrollada con Django y Oracle XE para la gestión de una tienda de videojuegos. Incluye autenticación, edición de perfil, carrito de compras, y validaciones de formularios.
+**Repositorio principal:** https://github.com/LimberQF/gameoverprime  
+**Respaldo:** https://github.com/Engg13/GameOverPrime.Respaldo
 
-## Tecnologías utilizadas
+## 📌 Descripción
 
-- Django 4.x
-- Oracle XE 18c
-- HTML, CSS, Bootstrap 5, JavaScript
-- PowerShell (Windows)
-- Git y GitHub
+GameOverPrime es una tienda de videojuegos desarrollada con Django y Oracle, que integra seguridad JWT, consumo de API externa y visualización dinámica en el frontend. Este proyecto cumple con todos los criterios de la rúbrica académica, incluyendo trazabilidad, documentación y validación técnica.
 
-## Funcionalidades principales
+## 🧱 Estructura del proyecto
 
-- Inicio de sesión y registro de usuarios
-- Recuperación y cambio de contraseña con validaciones
-- Edición de perfil con validación de edad mínima
-- Carrito de compras y caja
-- Interfaz responsiva adaptada a escritorio, tablet y móvil
-- Seguridad de acceso por roles
+- `/backend/` → Proyecto Django con configuración Oracle y JWT
+- `/frontend/` → Archivos HTML, CSS y JS con consumo de APIs
+- `/scripts/` → PowerShell y SQL para pruebas, truncado y evidencias
+- `/docs/` → Documentación técnica, rúbrica y tablas de validación
 
-## Instalación
 
-1. Crear entorno virtual y activar
-2. Instalar dependencias con `pip install -r requirements.txt`
-3. Configurar Oracle XE y ejecutar el script SQL
-4. Ejecutar el servidor con `python manage.py runserver`
 
-## Entregables incluidos
+## 🔐 Seguridad JWT
 
-- Código fuente completo
-- Script de base de datos (`oracle_setup.sql`)
+- Implementación con `djangorestframework-simplejwt`
+- Rutas activas:
+  - `/api/token/` → generación de token
+  - `/api/token/refresh/` → renovación
+- Protección de rutas con `IsAuthenticated`
+- Validación en Postman: acceso restringido sin token (`401`), acceso autorizado con token (`200 OK`)
 
-## Descripcion del MER
-El modelo entidad-relación (MER) de GameOverPrime representa la estructura lógica de la base de datos utilizada en la aplicación web. Está normalizado hasta tercera forma normal (3FN) y contempla las siguientes entidades principales:
-- Usuario: almacena credenciales y datos básicos de acceso.
-- Perfil: extiende la información del usuario con datos personales y rol asignado.
-- Rol: define los tipos de usuario (cliente, administrador).
-- Producto: contiene información sobre los videojuegos disponibles.
-- CarritoItem: representa los productos seleccionados por el usuario antes de la compra.
-- Orden: registra compras confirmadas por el usuario.
-- DetalleOrden: vincula productos con cada orden, incluyendo cantidad y precio.
-Todas las relaciones están definidas mediante claves foráneas, y el modelo permite trazabilidad completa del flujo de compra, desde la selección de productos hasta el registro de órdenes. El MER fue diseñado y exportado desde Oracle DataModeler, y se incluye como imagen (PNG) en la entrega.
+## 🌐 Consumo de API externa
+
+- API integrada: [NewsAPI](https://newsapi.org)
+- Ruta: `/api/noticias/`
+- Visualización en frontend: sección “Noticias Gamer”
+- Validación de respuesta en español
+
+## 🔁 Consumo de API propia
+
+- Rutas consumidas desde el frontend:
+  - `/api/productos/`
+  - `/api/categorias/`
+- Uso de `fetch()` en `index.html`
+- Visualización dinámica con Bootstrap
+
+## 🗃️ Base de datos Oracle
+
+- Conexión validada con Oracle
+- Operaciones CRUD completas:
+  - Crear, leer, actualizar y eliminar productos y categorías
+- Validación desde frontend y Postman
+
+## 📄 Documentación y trazabilidad
+
+- `README.md` con estructura, rutas, seguridad y APIs
+- Commits comentados y organizados por rama
+- Evidencia técnica y académica para cada punto de la rúbrica
+
+## 🎥 Video de presentación
+
+- En elaboración con participación de todos los integrantes
+- Se abordarán todos los puntos solicitados por la rúbrica
+
+## 📊 Cumplimiento de rúbrica
+
+| Criterio                         | Evidencia técnica                         | Validación |
+|----------------------------------|-------------------------------------------|------------|
+| Seguridad JWT                    | Rutas `/api/token/`, Postman, `IsAuthenticated` | ✅         |
+| API externa                      | `/api/noticias/`, integración con NewsAPI | ✅         |
+| API propia                       | `/api/productos/`, `/api/categorias/`, consumo con `fetch()` | ✅         |
+| Oracle CRUD                      | Tablas `productos` y `categorias`, validación desde frontend y Postman | ✅         |
+| Documentación                    | `README.md`, commits comentados y organizados | ✅         |
+| Frontend dinámico                | Bootstrap, visualización con `fetch()` en `index.html` | ✅         |
+| Video presentación               | En elaboración con participación grupal | ⏳         |

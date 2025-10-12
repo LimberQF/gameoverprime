@@ -78,9 +78,11 @@ WSGI_APPLICATION = 'gameoverprime.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.oracle',
-        'NAME': '127.0.0.1:1521/XEPDB1',   
-        'USER': 'DJANGO_GRUPO7',          
+        'NAME': 'xe',  
+        'USER': 'DJANGO_GRUPO7',
         'PASSWORD': 'Grupo72025progra',
+        'HOST': 'localhost',
+        'PORT': '1521',
     }
 }
 
