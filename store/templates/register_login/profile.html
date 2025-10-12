@@ -1,0 +1,58 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mi Perfil – GameOverPrime</title>
+  <link rel="stylesheet" href="{% static 'store/css/style.css' %}" />
+  <script src="{% static 'store/js/main.js' %}" defer></script>
+</head>
+<body>
+  <div class="top">
+    <a class="home-btn" href="{% url 'store:home' %}" title="Inicio">
+      <svg viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M5 9.5V21h14V9.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M9 21v-6h6v6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </a>
+
+    <div class="spacer"></div>
+
+    <a href="{% url 'store:caja' %}" class="home-btn" id="iconoCarrito" title="Caja">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.35 2.7a1 1 0 00.9 1.5h12.1m-13.65-4.2L5.4 5M16 21a1 1 0 100-2 1 1 0 000 2z" />
+      </svg>
+      <span id="contadorCarrito">0</span>
+    </a>
+
+    <a class="login" href="{% url 'store:logout' %}">Salir</a>
+
+    <label class="toggle" title="Tema claro/oscuro">
+      <input id="themeToggle" class="sr-only" type="checkbox" />
+      <div class="switch"><span class="knob"></span></div>
+    </label>
+  </div>
+
+  <main style="max-width: 720px; margin: 24px auto; padding: 0 16px;">
+    <h1>Mi Perfil</h1>
+
+    {% if messages %}
+      <ul class="messages" style="margin:12px 0;">
+        {% for m in messages %}<li class="{{ m.tags }}">{{ m }}</li>{% endfor %}
+      </ul>
+    {% endif %}
+
+    <div class="auth-card">
+      <p><strong>Usuario:</strong> {{ request.user.username }}</p>
+      <p><strong>Nombre:</strong> {{ request.user.first_name }} {{ request.user.last_name }}</p>
+      <p><strong>Email:</strong> {{ request.user.email }}</p>
+      <p><strong>Teléfono:</strong> {{ perfil.telefono }}</p>
+      <p><strong>Dirección:</strong> {{ perfil.direccion }}</p>
+      <p><strong>Fecha de nacimiento:</strong> {{ perfil.fecha_nacimiento|date:"d/m/Y" }}</p>
+
+      <div class="form-actions" style="margin-top: 12px;">
+        <a class="btn btn-primary" href="{% url 'store:profile_edit' %}">Editar perfil</a>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

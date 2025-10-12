@@ -1,0 +1,178 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GameOverPrime – Tienda de Videojuegos</title>
+
+  <!-- Estilos -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'store/css/reset.css' %}">
+  <link rel="stylesheet" href="{% static 'store/css/style.css' %}">
+
+  <!-- Scripts -->
+  <script src="{% static 'store/js/main.js' %}" defer></script>
+  <script>
+    try {
+      if (localStorage.getItem("theme") === "dark") {
+        document.documentElement.classList.add("dark");
+      }
+    } catch (e) {}
+  </script>
+</head>
+
+<body>
+  <!-- Header -->
+  <header class="bg-dark text-white py-3">
+    <div class="container d-flex justify-content-between align-items-center">
+      <a href="{% url 'store:category' %}" class="btn btn-outline-light btn-sm">&larr; Categorías</a>
+
+      <div class="d-flex align-items-center gap-3">
+        <a href="{% url 'store:caja' %}" class="position-relative" title="Carrito">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.35 2.7a1 1 0 00.9 1.5h12.1m-13.65-4.2L5.4 5M16 21a1 1 0 100-2 1 1 0 000 2z" />
+          </svg>
+          <span id="contadorCarrito" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">0</span>
+        </a>
+
+        {% if request.user.is_authenticated %}
+          <a href="{% url 'store:profile' %}" class="text-white">Mi Perfil</a>
+          <a href="{% url 'store:logout' %}" class="btn btn-outline-light btn-sm">Salir</a>
+        {% else %}
+          <a href="{% url 'store:login' %}" class="text-white">Iniciar sesión</a>
+          <a href="{% url 'store:register' %}" class="btn btn-outline-light btn-sm">Crear cuenta</a>
+        {% endif %}
+
+        <label class="toggle" title="Tema claro/oscuro">
+          <input id="themeToggle" class="sr-only" type="checkbox" />
+          <div class="switch"><span class="knob"></span></div>
+        </label>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main -->
+  <main class="container my-5">
+
+    <!-- Juegos en oferta (RAWG) -->
+    <section class="text-center mb-5">
+      <h2 class="display-5">Juegos en oferta</h2>
+      <div id="offersRow" class="row"></div>
+    </section>
+
+    <!-- Buscador -->
+    <section class="mb-4">
+      <form class="d-flex justify-content-center" role="search">
+        <input id="search" class="form-control w-50 me-2" placeholder="Buscar juegos" aria-label="Buscar" />
+        <button id="searchBtn" class="btn btn-primary" type="submit">
+          <svg class="icon-18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M21 21l-4.3-4.3" stroke="currentColor" stroke-linecap="round" />
+            <circle cx="11" cy="11" r="7" stroke="currentColor" />
+          </svg>
+        </button>
+      </form>
+    </section>
+
+    <!-- Productos desde Oracle -->
+    <section class="row" id="grid">
+      {% for juego in juegos %}
+      <article class="col-md-4 mb-4">
+        <div class="card h-100">
+          <img src="{% static juego.imagen %}" class="card-img-top" alt="{{ juego.nombre }}">
+          <div class="card-body">
+            <h5 class="card-title">{{ juego.nombre }}</h5>
+            <p class="card-text">{{ juego.precio }}</p>
+          </div>
+        </div>
+      </article>
+      {% endfor %}
+    </section>
+
+    <!-- Categorías -->
+    <section class="mt-5">
+      <h3 class="text-center">Categorías disponibles</h3>
+      <ul id="lista-categorias" class="list-group list-group-flush"></ul>
+    </section>
+
+    <!-- Noticias Gamer -->
+    <section class="mt-5">
+      <h3 class="text-center">Noticias Gamer</h3>
+      <ul id="noticiasGamer" class="list-group list-group-flush"></ul>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-dark text-white text-center py-3">
+    <small>&copy; 2025 GameOverPrime. Todos los derechos reservados.</small>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    // Categorías desde API propia
+    fetch('http://127.0.0.1:8000/api/categorias/')
+      .then(response => response.json())
+      .then(data => {
+        const lista = document.getElementById('lista-categorias');
+        data.forEach(cat => {
+          const item = document.createElement('li');
+          item.className = 'list-group-item';
+          item.textContent = `${cat.nombre} – ${cat.descripcion}`;
+          lista.appendChild(item);
+        });
+      })
+      .catch(error => console.error('Error al cargar categorías:', error));
+  </script>
+
+  <script>
+    // Juegos desde RAWG
+    const rawgKey = 'fb5016a41e2344298882d72356584929';
+    fetch(`https://api.rawg.io/api/games?key=${rawgKey}&page_size=6`)
+      .then(res => res.json())
+      .then(data => {
+        const offersRow = document.getElementById('offersRow');
+        data.results.forEach(juego => {
+          const col = document.createElement('div');
+          col.className = 'col-md-4 mb-4';
+          col.innerHTML = `
+            <div class="card h-100">
+              <img src="${juego.background_image}" class="card-img-top" alt="${juego.name}">
+              <div class="card-body">
+                <h5 class="card-title">${juego.name}</h5>
+                <p class="card-text">Lanzamiento: ${juego.released}</p>
+              </div>
+            </div>
+          `;
+          offersRow.appendChild(col);
+        });
+      })
+      .catch(err => console.error('Error al cargar juegos de RAWG:', err));
+  </script>
+
+  <script>
+    // Noticias desde Django (proxy de NewsAPI)
+    fetch('http://127.0.0.1:8000/api/noticias/')
+      .then(res => res.json())
+      .then(data => {
+        const lista = document.getElementById('noticiasGamer');
+        lista.innerHTML = '';
+        data.slice(0, 5).forEach(noticia => {
+          const item = document.createElement('li');
+          item.className = 'list-group-item';
+          item.innerHTML = `
+            <strong>${noticia.title}</strong><br>
+            <a href="${noticia.url}" target="_blank">Leer más</a>
+          `;
+          lista.appendChild(item);
+        });
+      })
+      .catch(err => {
+        const lista = document.getElementById('noticiasGamer');
+        lista.innerHTML = '<li class="list-group-item text-danger">No se pudieron cargar las noticias gamer.</li>';
+        console.error('Error al cargar noticias gamer:', err);
+      });
+  </script>
+</body>
+</html>
